@@ -1,0 +1,15 @@
+uvicorn
+fastapi
+pydantic
+pystray
+pystray>=0.19.5
+Pillow>=10.0.0
+PySide6>=6.8.0
+psutil>=6.0.0
+requests>=2.32.0
+playwright>=1.47.0
+python-dotenv>=1.0.0
+openai>=1.0.0
+langgraph>=0.2.0
+langchain-core>=0.3.0
+langchain-openai>=0.2.0
