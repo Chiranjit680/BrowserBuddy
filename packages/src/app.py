@@ -4,6 +4,7 @@ import pystray
 from PIL import Image, ImageDraw
 
 import browser_track
+import log_setup
 
 _tracking_thread: threading.Thread | None = None
 _stop_event: threading.Event | None = None
@@ -55,6 +56,10 @@ def on_quit(icon, item):
 
 
 def main():
+    # First thing, and before any thread starts: the tray has no console, so
+    # until this runs nothing the app logs is recoverable.
+    log_setup.configure()
+
     menu = pystray.Menu(
         pystray.MenuItem("Show", on_show, default=True),
         pystray.MenuItem("Quit", on_quit),

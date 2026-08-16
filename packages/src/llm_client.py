@@ -6,9 +6,10 @@ from openai import OpenAI
 
 load_dotenv()
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s [%(name)s] %(levelname)s: %(message)s"
-)
+# No basicConfig here: configuring the root logger is the entry point's job
+# (log_setup.configure), not something a library module does to whoever
+# imports it. Doing it here would also double every console line for any
+# process that has already configured logging properly.
 logger = logging.getLogger(__name__)
 
 SYSTEM_PROMPT = (
@@ -60,4 +61,7 @@ def ask(user_text: str, page_content: str) -> str:
 
 
 if __name__ == "__main__":
+    import log_setup
+
+    log_setup.configure()
     print(ask("Say hello in one short sentence.", ""))
